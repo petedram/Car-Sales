@@ -5,7 +5,8 @@ export const initialState = {
       name: '2019 Ford Mustang',
       image:
         'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
-      features: []
+      features: [  
+    ]
     },
     additionalFeatures: [
       { id: 1, name: 'V-6 engine', price: 1500 },
@@ -17,7 +18,18 @@ export const initialState = {
 
 
 export const carReducer = (state = initialState, action) => {
-    console.log('carReducer state and action', state, action);
-    
-    return state;
-}
+    switch(action.type) {
+      case 'ADD_FEATURE':
+        console.log('ADD_FEATURE type and payload', action.type, action.payload);
+        console.log('logging features from reducer', state.car.features)
+        return {
+          ...state,
+          car: {
+            ...state.car, features:[...state.car.features, action.payload]
+          }
+        }
+
+      default:
+        return state;
+    }
+  }
