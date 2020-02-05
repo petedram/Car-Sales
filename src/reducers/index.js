@@ -18,16 +18,31 @@ export const initialState = {
 
 
 export const carReducer = (state = initialState, action) => {
+
+
     switch(action.type) {
       case 'ADD_FEATURE':
         console.log('ADD_FEATURE type and payload', action.type, action.payload);
         console.log('logging features from reducer', state.car.features)
+        console.log('additionalPrice from aciton', state.additionalPrice)
         return {
           ...state,
           car: {
-            ...state.car, features:[...state.car.features, action.payload]
-          }
+            ...state.car, features:[...state.car.features, action.payload],
+          },
+          additionalPrice: state.additionalPrice + action.payload.price
+
         }
+      case 'REMOVE_FEATURE':
+        console.log('is it an array?', state.car.features);
+      return {
+        ...state,
+        car: {
+          ...state.car, features: state.car.features.filter(item => item.id != action.payload.id)
+        },
+        additionalPrice: state.additionalPrice - action.payload.price
+
+      }
 
       default:
         return state;

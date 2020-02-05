@@ -10,15 +10,9 @@ import { connect } from 'react-redux';
 
 const App = props => {
 
-  const removeFeature = item => {
-    // dispatch an action here to remove an item
-  };
-
-  const buyItem = item => {
-    // dipsatch an action here to add an item
-  };
-
   console.log('props from app', props  );
+  console.log('additionalPrice from app', props.additionalPrice)
+
 
   return (
     <div className="boxes">
